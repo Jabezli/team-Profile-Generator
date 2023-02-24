@@ -85,7 +85,8 @@ function questionsForEngineer(){
         }]).then((answers)=> {
             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
             teamMember.push(engineer);
-            console.log(teamMember);
+            isAddRole()
+            console.log(teamMember);          
         })
     };
 
@@ -113,7 +114,8 @@ function questionsForIntern(){
         }]).then((answers)=> {
             const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
             teamMember.push(intern);
-            console.log(teamMember);
+            isAddRole()
+            console.log(teamMember);  
         }) 
 }
 function isAddRole(){
@@ -162,26 +164,26 @@ const whichRole = ()=> {
 // teamMember.push(engineer, intern);
 
 
-// function test() { 
+function employeeCards() { 
 
-//     const cardsArray = [];
+    const cardsArray = [];
 
-//     for (let i=0; i<teamMember.length; i++) {
-//         const memberCard = `
-//             <div>
-//                 <h1>Role: ${teamMember[i].role}</h1>
-//                 <h2 style="color: ${teamMember[i].role === 'Manager' ? 'red' : 
-//                 teamMember[i].role === 'Engineer' ? 'green' : 'purple'}">Name: ${teamMember[i].name}</h2>
-//                 <h3>ID: ${teamMember[i].id}</h3>
-//             </div>\n
-//         `;
-//         cardsArray.push(memberCard);
-//     }
+    for (let i=0; i<teamMember.length; i++) {
+        const memberCard = `
+            <div>
+                <h1>Role: ${teamMember[i].role}</h1>
+                <h2 style="color: ${teamMember[i].role === 'Manager' ? 'red' : 
+                teamMember[i].role === 'Engineer' ? 'green' : 'purple'}">Name: ${teamMember[i].name}</h2>
+                <h3>ID: ${teamMember[i].id}</h3>
+            </div>\n
+        `;
+        cardsArray.push(memberCard);
+    }
     
-//     const htmlDivs = cardsArray.join("");
+    const htmlDivs = cardsArray.join("");
 
-//     console.log(htmlDivs);
-// }
+    console.log(htmlDivs);
+}
 
 isManager();
-// const generateHTML = () => {}
+
