@@ -11,7 +11,7 @@ const isManager = () => {
     inquirer.prompt([
         {
             type: "confirm",
-            name:"isManager",
+            name: "isManager",
             message: "this app should only be used by a manager, are you a manager?",
             default: false
         }
@@ -24,7 +24,7 @@ const isManager = () => {
     })
 };
 
-function questionForManager(){
+function questionForManager() {
     inquirer.prompt([
         {
             type: "input",
@@ -52,16 +52,16 @@ function questionForManager(){
             message: 'what is your office number?',
             name: 'officeNumber',
         }
-    ]).then((answers)=>{
-        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);  
+    ]).then((answers) => {
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
         teamMember.push(manager);
         isAddRole();
         console.log(teamMember);
-        
+       
     })
 }
 
-function questionsForEngineer(){
+function questionsForEngineer() {
     inquirer.prompt([
         {
             type: "input",
@@ -82,15 +82,15 @@ function questionsForEngineer(){
             type: 'input',
             message: `What is the engineer's github username?`,
             name: 'github',
-        }]).then((answers)=> {
+        }]).then((answers) => {
             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
             teamMember.push(engineer);
             isAddRole()
-            console.log(teamMember);          
+            console.log(teamMember);
         })
-    };
+};
 
-function questionsForIntern(){
+function questionsForIntern() {
     inquirer.prompt([
         {
             type: "input",
@@ -111,41 +111,42 @@ function questionsForIntern(){
             type: 'input',
             message: `What is the intern's school?`,
             name: 'school',
-        }]).then((answers)=> {
+        }]).then((answers) => {
             const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
             teamMember.push(intern);
             isAddRole()
-            console.log(teamMember);  
-        }) 
+            console.log(teamMember);
+        })
 }
-function isAddRole(){
-    
+function isAddRole() {
+
     inquirer.prompt([
         {
             type: "confirm",
             message: "Do you want to add a role?",
             name: "isAddRole",
-            default:"false",
+            default: "false",
         }
     ]).then((answers) => {
-        if (answers.isAddRole){
+        if (answers.isAddRole) {
             whichRole();
-            
+
         } else {
-            console.log("Exiting Application as no role will be added.")
+            console.log("Exiting Application")
+            employeeCards();
         }
     })
-   
+
 }
 
-const whichRole = ()=> {
+const whichRole = () => {
     inquirer.prompt([{
-        type:'list',
-        name:'typeRole',
+        type: 'list',
+        name: 'typeRole',
         message: 'Which role would you like to add?',
         choices: ['Engineer', 'Intern']
     }]).then((answers) => {
-        if(answers.typeRole === 'Engineer'){
+        if (answers.typeRole === 'Engineer') {
             questionsForEngineer()
         } else {
             questionsForIntern()
@@ -164,25 +165,75 @@ const whichRole = ()=> {
 // teamMember.push(engineer, intern);
 
 
-function employeeCards() { 
+function employeeCards() {
 
     const cardsArray = [];
 
-    for (let i=0; i<teamMember.length; i++) {
-        const memberCard = `
-            <div>
-                <h1>Role: ${teamMember[i].role}</h1>
-                <h2 style="color: ${teamMember[i].role === 'Manager' ? 'red' : 
-                teamMember[i].role === 'Engineer' ? 'green' : 'purple'}">Name: ${teamMember[i].name}</h2>
-                <h3>ID: ${teamMember[i].id}</h3>
-            </div>\n
-        `;
+    for (let i = 0; i < teamMember.length; i++) {
+        const member = teamMember[i];
+        let memberCard = "";
+        if (member.role === 'Manager'){
+
+            memberCard = `
+                <div>
+                    <h1>Role: ${member.role}</h1>
+                    <h2 style="color: ${member.role === 'Manager' ? 'red' :
+                    member.role === 'Engineer' ? 'green' : 'purple'}">Name: ${member.name}</h2>
+                    <h2>ID: ${member.id}</h2>
+                    <h2>Email: ${member.email}</h2>
+                    <h2>${member.role === 'Manager' ? 'Office Number' : member.role === 'Engineer' ? 'Github' : 'School'}</h2>
+    
+                </div>\n
+            `;
+        } else if (member.role === "Engineer") {
+            memberCard = `
+                <div>
+                    <h1>Role: ${member.role}</h1>
+                    <h2 style="color: ${member.role === 'Manager' ? 'red' :
+                    member.role === 'Engineer' ? 'green' : 'purple'}">Name: ${member.name}</h2>
+                    <h2>ID: ${member.id}</h2>
+                    <h2>Email: ${member.email}</h2>
+                    <h2>${member.role === 'Manager' ? 'Office Number' : member.role === 'Engineer' ? 'Github' : 'School'}</h2>
+    
+                </div>\n
+            `;
+        }else if (member.role === "Intern") {
+            memberCard = `
+                <div>
+                    <h1>Role: ${member.role}</h1>
+                    <h2 style="color: ${member.role === 'Manager' ? 'red' :
+                    member.role === 'Engineer' ? 'green' : 'purple'}">Name: ${member.name}</h2>
+                    <h2>ID: ${member.id}</h2>
+                    <h2>Email: ${member.email}</h2>
+                    <h2>${member.role === 'Manager' ? 'Office Number' : member.role === 'Engineer' ? 'Github' : 'School'}</h2>
+    
+                </div>\n
+            `;
+        }
+
         cardsArray.push(memberCard);
     }
-    
-    const htmlDivs = cardsArray.join("");
 
-    console.log(htmlDivs);
+    const htmlDivs = cardsArray.join("");
+    
+    const htmlPage = `
+        <!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Team File Generator</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+            <link rel="stylesheet" href="/asset/style.css">
+        </head>
+        <body>
+        ${htmlDivs}
+        </body>
+        </html>`
+
+    fs.writeFile(`test.html`, htmlPage, (err) => {
+        err ? console.log(err) : console.log('Webpage has been generated!')
+    })
 }
 
 isManager();
