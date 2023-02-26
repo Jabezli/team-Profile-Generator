@@ -236,7 +236,7 @@ function employeeCards() {
       </body>
     </html>`
 
-    fs.writeFile(`test.html`, htmlPage, (err) => {
+    fs.writeFile(`index.html`, htmlPage, (err) => {
         err ? console.log(err) : console.log('Webpage has been generated!')
     })
 }
