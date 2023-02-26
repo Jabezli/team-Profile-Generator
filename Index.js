@@ -35,7 +35,6 @@ function questionForManager() {
             type: 'input',
             message: 'what is your assigned ID?',
             name: 'id',
-            //how should I add a validation here?
         },
         {
             type: 'input',
