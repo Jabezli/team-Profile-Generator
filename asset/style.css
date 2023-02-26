@@ -1,3 +1,10 @@
+* {
+    box-sizing: border-box;
+  }
+
+body {
+    margin: 0 10%;
+}
 .header {
     background-color: antiquewhite;
     height: 100px;

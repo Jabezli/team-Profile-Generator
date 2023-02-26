@@ -155,67 +155,64 @@ const whichRole = () => {
 
 }
 
-
-
-
-
-
-// const engineer = new Engineer("jun123", "10", "email@test.com", "zzangu0215");
-// const intern = new Intern("jun456", "11", "email@test.com", "UCSD");
-// teamMember.push(engineer, intern);
-
-
 function employeeCards() {
 
     const cardsArray = [];
-
+    //I declared an array globally (teamMember) to store all added roles after each prompt, then here, the for loop will access the array and create a card for each
+    //role at the end of each loop as memberCard string. The memberCard will be pushed to cardsArray.
     for (let i = 0; i < teamMember.length; i++) {
         const member = teamMember[i];
         let memberCard = "";
         if (member.role === 'Manager'){
 
             memberCard = `
-                <div>
-                    <h1>Role: ${member.role}</h1>
-                    <h2 style="color: ${member.role === 'Manager' ? 'red' :
-                    member.role === 'Engineer' ? 'green' : 'purple'}">Name: ${member.name}</h2>
-                    <h2>ID: ${member.id}</h2>
-                    <h2>Email: ${member.email}</h2>
-                    <h2>${member.role === 'Manager' ? 'Office Number' : member.role === 'Engineer' ? 'Github' : 'School'}</h2>
-    
-                </div>\n
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h4 class="card-title">Role: ${member.role}</h5>
+                        <h5 class="card-text">Name: ${member.name}</h5>
+                        <h5 class="card-text">ID: ${member.id}</h5>
+                        <h5 class="card-text"><a href="mailto:${member.email}">${member.email}</a></h5>
+                        <h5 class="card-text">Office Number: ${member.officeNumber}</h5>
+                    </div>
+                </div>
+            </div>\n
             `;
         } else if (member.role === "Engineer") {
             memberCard = `
-                <div>
-                    <h1>Role: ${member.role}</h1>
-                    <h2 style="color: ${member.role === 'Manager' ? 'red' :
-                    member.role === 'Engineer' ? 'green' : 'purple'}">Name: ${member.name}</h2>
-                    <h2>ID: ${member.id}</h2>
-                    <h2>Email: ${member.email}</h2>
-                    <h2>${member.role === 'Manager' ? 'Office Number' : member.role === 'Engineer' ? 'Github' : 'School'}</h2>
-    
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">Role: ${member.role}</h5>
+                            <h5 class="card-text">Name: ${member.name}</h5>
+                            <h5 class="card-text">ID: ${member.id}</h5>
+                            <h5 class="card-text"><a href="mailto:${member.email}">${member.email}</a></h5>
+                            <h5 class="card-text"><a href="https://github.com/${member.github}">Github: ${member.github}</a></h5>
+                        </div>
+                    </div>
                 </div>\n
             `;
-        }else if (member.role === "Intern") {
+        } else if (member.role === "Intern") {
             memberCard = `
-                <div>
-                    <h1>Role: ${member.role}</h1>
-                    <h2 style="color: ${member.role === 'Manager' ? 'red' :
-                    member.role === 'Engineer' ? 'green' : 'purple'}">Name: ${member.name}</h2>
-                    <h2>ID: ${member.id}</h2>
-                    <h2>Email: ${member.email}</h2>
-                    <h2>${member.role === 'Manager' ? 'Office Number' : member.role === 'Engineer' ? 'Github' : 'School'}</h2>
-    
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">Role: ${member.role}</h5>
+                            <h5 class="card-text">Name: ${member.name}</h5>
+                            <h5 class="card-text">ID: ${member.id}</h5>
+                            <h5 class="card-text"><a href="mailto:${member.email}">${member.email}</a></h5>
+                            <h5 class="card-text">School: ${member.school}</h5>
+                        </div>
+                    </div>
                 </div>\n
             `;
         }
 
         cardsArray.push(memberCard);
     }
-
+    //here I joined all the cardsArray into a integrated html chunk.
     const htmlDivs = cardsArray.join("");
-    
+    //I have some preset html elements here then the htmlDivs will be insert into it.
     const htmlPage = `
         <!doctype html>
         <html lang="en">
