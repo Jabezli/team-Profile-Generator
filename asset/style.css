@@ -4,13 +4,29 @@
 
 body {
     margin: 0 10%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 .header {
-    background-color: antiquewhite;
+    /* background-color:rgb(79, 113, 177, 0.85); */
+    background-color: #aa4d3d;
     height: 100px;
+    border-bottom: 2px solid rgb(192, 192, 192);
+
 }
 
 .header-h1 {
     text-align:center;
     padding-top: 20px;
+
+}
+
+.cardInnerDiv{
+    display: flex;
+    justify-content: center;
+
+}
+
+.cardBody{
+    box-shadow: 10px 5px 5px rgba(0,0,0,0.5);
+    background-color: #e4e6e9;
 }

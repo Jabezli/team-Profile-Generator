@@ -167,12 +167,12 @@ function employeeCards() {
 
             memberCard = `
             <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h4 class="card-title">Role: ${member.role}</h5>
-                        <h5 class="card-text">Name: ${member.name}</h5>
+                <div class="col h-100 cardInnerDiv">
+                   <div class="card h-100 w-75 p-5 cardBody">
+                        <h3 class="card-text">Name: ${member.name}</h3>
+                        <h5 class="card-title">${member.role}</h5>
                         <h5 class="card-text">ID: ${member.id}</h5>
-                        <h5 class="card-text"><a href="mailto:${member.email}">${member.email}</a></h5>
+                        <h5 class="card-text">Email: <a href="mailto:${member.email}">${member.email}</a></h5>
                         <h5 class="card-text">Office Number: ${member.officeNumber}</h5>
                     </div>
                 </div>
@@ -181,13 +181,15 @@ function employeeCards() {
         } else if (member.role === "Engineer") {
             memberCard = `
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h4 class="card-title">Role: ${member.role}</h5>
-                            <h5 class="card-text">Name: ${member.name}</h5>
+                    <div class="col h-100 cardInnerDiv">
+                       <div class="card h-100 w-75 p-5 cardBody">
+                            <h3 class="card-text">Name: ${member.name}</h3>
+                            <h5 class="card-title">${member.role}</h5>
                             <h5 class="card-text">ID: ${member.id}</h5>
-                            <h5 class="card-text"><a href="mailto:${member.email}">${member.email}</a></h5>
-                            <h5 class="card-text"><a href="https://github.com/${member.github}">Github: ${member.github}</a></h5>
+                            <h5 class="card-text">Email: <a href="mailto:${member.email}">${member.email}</a></h5>
+                            <h5 class="card-text">
+                                <a href="https://github.com/${member.github}"><button style="font-size:24px">GitHub<i class="fa fa-github"></i></button></a>   
+                            </h5>       
                         </div>
                     </div>
                 </div>\n
@@ -195,12 +197,12 @@ function employeeCards() {
         } else if (member.role === "Intern") {
             memberCard = `
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h4 class="card-title">Role: ${member.role}</h5>
-                            <h5 class="card-text">Name: ${member.name}</h5>
+                    <div class="col h-100 cardInnerDiv">
+                       <div class="card h-100 w-75 p-5 cardBody">
+                            <h3 class="card-text">Name: ${member.name}</h3>
+                            <h5 class="card-title">${member.role}</h5>
                             <h5 class="card-text">ID: ${member.id}</h5>
-                            <h5 class="card-text"><a href="mailto:${member.email}">${member.email}</a></h5>
+                            <h5 class="card-text">Email: <a href="mailto:${member.email}">${member.email}</a></h5>
                             <h5 class="card-text">School: ${member.school}</h5>
                         </div>
                     </div>
@@ -221,13 +223,14 @@ function employeeCards() {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Team File Generator</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/asset/style.css">
       </head>
       <body>
         <header class="header">
         <h1 class="header-h1">My Team</h1>
         </header>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center mt-1">
         ${htmlDivs}
         </div>
       </body>
@@ -238,5 +241,8 @@ function employeeCards() {
     })
 }
 
-isManager();
+const init = () => isManager();
+
+init();
+
 
